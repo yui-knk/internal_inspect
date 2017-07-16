@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class InternalInspectTest < Minitest::Test
+  def test_special_const_p
+    assert 1.special_const?
+    assert true.special_const?
+    assert false.special_const?
+    assert nil.special_const?
+
+    assert !"あ".special_const?
+  end
+
   def test_static_sym_p
     assert "a".to_sym.static_sym?
     assert !"あ".to_sym.static_sym?
