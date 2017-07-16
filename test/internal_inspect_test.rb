@@ -5,7 +5,13 @@ class InternalInspectTest < Minitest::Test
     refute_nil ::InternalInspect::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_static_sym_p
+    assert "a".to_sym.static_sym?
+    assert !"あ".to_sym.static_sym?
+  end
+
+  def test_dynamic_sym_p
+    assert "あ".to_sym.dynamic_sym?
+    assert !"a".to_sym.dynamic_sym?
   end
 end
