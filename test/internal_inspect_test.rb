@@ -10,6 +10,15 @@ class InternalInspectTest < Minitest::Test
     assert !"あ".special_const?
   end
 
+  def test_immediate_p
+    assert 1.immediate?
+    assert true.immediate?
+
+    assert !false.immediate?
+    assert !nil.immediate?
+    assert !"あ".immediate?
+  end
+
   def test_static_sym_p
     assert "a".to_sym.static_sym?
     assert !"あ".to_sym.static_sym?
