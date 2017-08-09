@@ -34,6 +34,17 @@ object_flags(VALUE self)
     return INT2NUM(flags);
 }
 
+static VALUE
+object_ruby_value_type(VALUE self)
+{
+    /* We can not use BUILTIN_TYPE directly,
+     * because BUILTIN_TYPE does not take care of
+     * IMMEDIATE values.
+     */
+    int type = rb_type(self);
+    return INT2FIX(type);
+}
+
 void
 Init_internal_inspect(void)
 {
@@ -46,4 +57,5 @@ Init_internal_inspect(void)
     rb_define_method(rb_cSymbol, "dynamic_sym?", dynamic_sym_p, 0);
 
     rb_define_method(rb_cObject, "flags", object_flags, 0);
+    rb_define_method(rb_cObject, "ruby_value_type", object_ruby_value_type, 0);
 }

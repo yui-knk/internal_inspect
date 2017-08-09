@@ -33,4 +33,14 @@ class InternalInspectTest < Minitest::Test
     assert "".flags.is_a?(Integer)
     assert [].flags.is_a?(Integer)
   end
+
+  def test_ruby_value_type
+    assert_equal  5, "".ruby_value_type
+    assert_equal  7, [].ruby_value_type
+    assert_equal 17, nil.ruby_value_type
+    assert_equal 18, true.ruby_value_type
+    assert_equal 19, false.ruby_value_type
+    assert_equal 20, :a.ruby_value_type
+    assert_equal 21, 1.ruby_value_type
+  end
 end
