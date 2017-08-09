@@ -30,7 +30,13 @@ dynamic_sym_p(VALUE self)
 static VALUE
 object_flags(VALUE self)
 {
-    VALUE flags = RBASIC(self)->flags;
+    VALUE flags;
+
+    if (!RB_FL_ABLE(self)) {
+        return Qnil;
+    }
+
+    flags = RBASIC(self)->flags;
     return INT2NUM(flags);
 }
 
