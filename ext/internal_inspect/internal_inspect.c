@@ -27,6 +27,12 @@ dynamic_sym_p(VALUE self)
     return RB_DYNAMIC_SYM_P(self) ? Qtrue : Qfalse;
 }
 
+static VALUE
+object_flags(VALUE self)
+{
+    VALUE flags = RBASIC(self)->flags;
+    return INT2NUM(flags);
+}
 
 void
 Init_internal_inspect(void)
@@ -38,4 +44,6 @@ Init_internal_inspect(void)
 
     rb_define_method(rb_cSymbol, "static_sym?", static_sym_p, 0);
     rb_define_method(rb_cSymbol, "dynamic_sym?", dynamic_sym_p, 0);
+
+    rb_define_method(rb_cObject, "flags", object_flags, 0);
 }

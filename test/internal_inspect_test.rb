@@ -28,4 +28,9 @@ class InternalInspectTest < Minitest::Test
     assert "あ".to_sym.dynamic_sym?
     assert !"a".to_sym.dynamic_sym?
   end
+
+  def test_flags
+    assert "".flags.is_a?(Integer)
+    assert [].flags.is_a?(Integer)
+  end
 end
