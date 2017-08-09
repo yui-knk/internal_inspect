@@ -45,6 +45,20 @@ object_ruby_value_type(VALUE self)
     return INT2FIX(type);
 }
 
+static VALUE
+object_fl_user0(VALUE self)
+{
+    VALUE flags = RBASIC(self)->flags;
+    return (flags & FL_USER0) ? Qtrue : Qfalse;
+}
+
+static VALUE
+object_fl_user1(VALUE self)
+{
+    VALUE flags = RBASIC(self)->flags;
+    return (flags & FL_USER1) ? Qtrue : Qfalse;
+}
+
 void
 Init_internal_inspect(void)
 {
@@ -58,4 +72,6 @@ Init_internal_inspect(void)
 
     rb_define_method(rb_cObject, "flags", object_flags, 0);
     rb_define_method(rb_cObject, "ruby_value_type", object_ruby_value_type, 0);
+    rb_define_method(rb_cObject, "fl_user0", object_fl_user0, 0);
+    rb_define_method(rb_cObject, "fl_user1", object_fl_user1, 0);
 }

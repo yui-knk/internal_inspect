@@ -43,4 +43,19 @@ class InternalInspectTest < Minitest::Test
     assert_equal 20, :a.ruby_value_type
     assert_equal 21, 1.ruby_value_type
   end
+
+  def test_fl_user0
+    # fl_user0 is used as a singleton_class flag.
+    assert_equal true,  "".singleton_class.fl_user0
+    assert_equal false, "".fl_user0
+  end
+
+  def test_fl_user1
+    # fl_user1 is used as an ARRAY EMBED FLAG in Array.
+    assert_equal true,  [].fl_user1
+    assert_equal true,  [1].fl_user1
+    assert_equal true,  [1, 2].fl_user1
+    assert_equal true,  [1, 2, 3].fl_user1
+    assert_equal false, [1, 2, 3, 4].fl_user1
+  end
 end
